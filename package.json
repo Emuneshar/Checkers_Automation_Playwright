@@ -2,7 +2,9 @@
   "name": "checkers_automation_playwright",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "Checkers_Script": "npx playwright test /src/test/ --headed --workers=1 --project=chromium --reporter=html"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

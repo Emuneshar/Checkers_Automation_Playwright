@@ -4,6 +4,7 @@ import { title } from "process"
 export async function captureText(page: Page, xpath: string, elementName: string){
     console.log("Capture text on "+elementName)
     let result = await page.locator(xpath).textContent()
+    return result;
 }
 
 export async function click(page: Page, xpath: String, elementName: string){
@@ -11,27 +12,27 @@ export async function click(page: Page, xpath: String, elementName: string){
     await page.locator("xpath="+xpath).click()
 }
 
-export async function MovePiece(page: Page, xpathOrigin: string, xpathDestination: string, index: number){
-    const messageOne = "Select an orange piece to move." // Message to check if we can make the first move
-    const messageTwo = "Make a move"
-    const xpathMessage = "//*[@id = 'message']"
-    let messageText = await captureText(page, xpathMessage, "Captured text for verification") // text used for verification
+export async function MovePiece(page: Page, xpathOrigin : string, xpathDestination : string, index : number){
+    const messageOne = "Select an orange piece to move." // Mesage to check if we can make the first move
+    const messageTwo = "Make a move." // Message to check if we can make a move
+    const xpathMessage = "//*[@id = 'message']" // xpath to element that stores message
+    let messageText = await captureText(page, xpathMessage, "Captured text for verification") // text used for verificaiton
 
-    if(messageText === messageOne || messageText === messageTwo){
-        console.log("Move can be made")
-        await click(page, xpathOrigin, "Piece")
-        await page.waitForTimeout(2000)
-        await click(page, xpathDestination, "Piece moved susccessfully")
-        if((index +1) == 3){
-            console.log("Blue piece was taken")
+    if(messageText === messageOne || messageText === messageTwo){ // checks if this is the first move or if it is our turn
+        console.log("Move can be made") // Prints out that it is our turn and a move can be made
+        await click(page, xpathOrigin, "Piece") // Lets the user know a piece was clicked on
+        await page.waitForTimeout(2000) // added wait time due to moving too fast
+        await click(page, xpathDestination, "Piece Moved Successfully")// makes the move and prints out that it was made
+        if ((index+1) == 3 ){
+            console.log("Blue Piece was taken")
         }
-        await page.waitForTimeout(2000)
+        await page.waitForTimeout(2000) // added time to view the piece moving
     }
-    else {
-        console.log("Sorry couldn't make the move")
+    else{
+        console.log("Sorry couldn't make the move") // prints out that the move couldn't be made
     }
+    
 }
-
 export async function verifiedRestart(page: Page, xpathRestart: string, textToVerify: string){
     const xpathMessage = "//*[@id = 'message']" // xpath for element that contains the message
     await click(page, xpathRestart, "Game Restarted") // click on the restart button
