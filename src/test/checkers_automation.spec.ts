@@ -9,5 +9,20 @@ test.beforeAll(async ({browser}) =>{
     page = await browser.newPage()
 })
 
+// URLs, strings and other misc data
+const url = "https://www.gamesforthebrain.com/game/checkers/"
+const titleForVerification = "Checkers - Games for the Brain"
+const startMessage = "Select an orange piece to move."
+
+// xpaths of pieces we will move
+let xpathPieces = Array<string>()
+xpathPieces.push("//*[@name = 'space62']")
+xpathPieces.push("//*[@name = 'space42']")
+xpathPieces.push("//*[@name = 'space51']")
+xpathPieces.push("//*[@name = 'space31']")
+xpathPieces.push("//*[@name = 'space60']")
+
+
+
 
 
