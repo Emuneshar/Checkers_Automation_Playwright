@@ -16,5 +16,18 @@ export async function MovePiece(page: Page, xpathOrigin: string, xpathDestinatio
     const xpathMessage = "//*[@id = 'message']"
     let messageText = await captureText(page, xpathMessage, "Captured text for verification") // text used for verification
 
-
+    if(messageText === messageOne || messageText === messageTwo){
+        console.log("Move can be made")
+        await click(page, xpathOrigin, "Piece")
+        await page.waitForTimeout(2000)
+        await click(page, xpathDestination, "Piece moved susccessfully")
+        if((index +1) == 3){
+            console.log("Blue piece was taken")
+        }
+        await page.waitForTimeout(2000)
+    }
+    else {
+        console.log("Sorry couldn't make the move")
+    }
 }
+
