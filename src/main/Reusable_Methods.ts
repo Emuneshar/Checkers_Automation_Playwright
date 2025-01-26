@@ -1,4 +1,5 @@
 import {test, expect, Page} from "@playwright/test"
+import { title } from "process"
 
 export async function captureText(page: Page, xpath: string, elementName: string){
     console.log("Capture text on "+elementName)
@@ -45,3 +46,13 @@ export async function verifiedRestart(page: Page, xpathRestart: string, textToVe
     }
 }
 
+export async function verifyTitle(page: Page, titleForVerification: string){
+    let currentTitle = await page.title()
+    if(currentTitle === titleForVerification){
+        console.log("Site Navigated to successfully, title is a match")
+    }
+    else{
+        console.log("Wrong site was navigated to")
+    }
+
+}
