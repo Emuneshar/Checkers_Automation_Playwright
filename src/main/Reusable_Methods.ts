@@ -31,3 +31,17 @@ export async function MovePiece(page: Page, xpathOrigin: string, xpathDestinatio
     }
 }
 
+export async function verifiedRestart(page: Page, xpathRestart: string, textToVerify: string){
+    const xpathMessage = "//*[@id = 'message']"
+    await click(page, xpathRestart, "Game Restarted")
+    await page.waitForTimeout(3000)
+    let messageText = await captureText(page, xpathMessage, "for verification")
+
+    if(messageText === textToVerify){
+        console.log("Restart verified")
+    }
+    else{
+        console.log("Restart could not be verified")
+    }
+}
+
