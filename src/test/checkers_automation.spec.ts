@@ -22,7 +22,12 @@ xpathPieces.push("//*[@name = 'space51']")
 xpathPieces.push("//*[@name = 'space31']")
 xpathPieces.push("//*[@name = 'space60']")
 
-
-
+// corresponding xpaths for where we will move to
+let xpathPiecesTo = Array<string>()
+xpathPiecesTo.push("//*[@name = 'space53']")
+xpathPiecesTo.push("//*[@name = 'space33']")
+xpathPiecesTo.push("//*[@name = 'space33']")
+xpathPiecesTo.push("//*[@name = 'space42']")
+xpathPiecesTo.push("//*[@name = 'space51']")
 
 
